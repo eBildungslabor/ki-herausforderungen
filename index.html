@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KI-Sprachmodell Prompts</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        .prompt-container {
+            background-color: var(--pico-background-color);
+            border: 1px solid var(--pico-muted-border-color);
+            border-radius: var(--pico-border-radius);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .copy-button {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .success-message {
+            color: var(--pico-primary-color);
+            font-size: 0.875rem;
+            margin-left: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .success-message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Wie können wir uns von KI-Sprachmodellen herausfordern lassen?</h1>
+            <p>Hier sind ein paar Prompt-Ideen, die du für dich anpassen und mit einem Sprachmodell deiner Wahl ausprobieren kannst:</p>
+        </header>
+
+        <div class="prompt-container">
+            <p class="prompt-text">Ich möchte die Herausforderung von Selbstlernkompetenz besser verstehen. Lass uns einen sokratischen Dialog dazu führen! Du nimmst die Rolle von Sokrates ein, der mir eine Frage nach der anderen stellt. Du gehst schrittweise vor und wartest immer auf meine Antwort zu deiner Frage. Ich beantworte diese. Dann stellst du die nächste Frage.</p>
+            <button class="copy-button" onclick="copyPrompt(this)">Prompt kopieren</button>
+            <span class="success-message">Kopiert!</span>
+        </div>
+
+        <div class="prompt-container">
+            <p class="prompt-text">Ich teile einen Text mit dir. Du gibst ihn mir anschließend Abschnitt für Abschnitt zurück und gibst mir dazu jeweils eine Anregung, was ich verbessern kann. Ich sage dir, ob ich das sinnvoll finde oder nicht. Am Ende gibst du mir eine Liste mit allen Aspekten, zu denen ich zugesagt habe, sie zu verbessern, als Checkliste. Wenn du das Vorgehen verstanden hast, dann fordere mich jetzt als erstes auf, meinen Text mit dir zu teilen.</p>
+            <button class="copy-button" onclick="copyPrompt(this)">Prompt kopieren</button>
+            <span class="success-message">Kopiert!</span>
+        </div>
+
+        <div class="prompt-container">
+            <p class="prompt-text">Generiere mir eine Liste mit 10 Personas, die potentiell in einem Lernangebot zu Künstlicher Intelligenz in der Erwachsenenbildung lernen (möchten). Ich gebe dir dann eine Ausschreibung für ein von mir gestaltetes Lernangebot und nenne nacheinander unterschiedliche Personas aus deiner Liste. Du versetzt dich in diese Persona hinein und spiegelst mir, was diese Persona an meinem geteilten Inhalt kritisch sehen könnte oder was ihr Lernen verhindern würde.</p>
+            <button class="copy-button" onclick="copyPrompt(this)">Prompt kopieren</button>
+            <span class="success-message">Kopiert!</span>
+        </div>
+
+        <div class="prompt-container">
+            <p class="prompt-text">Wir spielen ein Spiel. Ich schreibe eine Aussage zu KI in meinem beruflichen Kontext - und direkt daran anschließend die Warum-Frage dazu. Zum Beispiel: KI vereinfacht mein Leben als Dozentin. Warum vereinfacht KI mein Leben als Dozentin? Du beantwortest die Warum-Frage und hinterfragst wiederum deine Antwort mit einem Warum. Wenn ich Stopp sage, fragst du mich, was ich aus dem Frage-Antwort-Spiel besonders spannend fand - und schreibst mir in Reaktion auf meine Antwort, was du besonders kreativ und neu empfindest.</p>
+            <button class="copy-button" onclick="copyPrompt(this)">Prompt kopieren</button>
+            <span class="success-message">Kopiert!</span>
+        </div>
+
+        <footer>
+            <h3>Welche weiteren Möglichkeiten fallen Euch ein, um Euch von einem KI-Sprachmodell herausfordern zu lassen?</h3>
+        </footer>
+    </main>
+
+    <script>
+        function copyPrompt(button) {
+            const promptText = button.previousElementSibling.textContent;
+            const successMessage = button.nextElementSibling;
+            
+            navigator.clipboard.writeText(promptText).then(function() {
+                successMessage.classList.add('show');
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Fehler beim Kopieren: ', err);
+                alert('Kopieren fehlgeschlagen. Bitte manuell markieren und kopieren.');
+            });
+        }
+    </script>
+</body>
+</html>
